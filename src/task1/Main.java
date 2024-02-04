@@ -17,22 +17,19 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Integer> arr = new ArrayList<>();
 
-        for (int i = 1; i < 20; i++) {
-            arr.add((int) (Math.random() * 100));
+        for (int i = 1; i < 50; i++) {
+            arr.add((int) (Math.random() * 20));
         }
 
-        arr.stream().distinct().filter(i -> i > 7 && i <= 17)
+        arr.stream().distinct().filter(i -> i > 7 && i <= 17 && i % 2 == 0)
+                .peek(System.out::println)
+                .map(i -> i * 2)
+                .sorted()
+                .limit(4)
                 .forEach(System.out::println);
 
-        System.out.println("\n");
-
-        arr.stream().map(i -> i * 2)
-                .sorted()
-                .limit(4).forEach(System.out::println);
-        System.out.println("\n");
-
-        int a = (int) arr.stream().count();
-        System.out.println(a);
+        int size = (int) arr.stream().count();
+        System.out.println(size);
 
         OptionalDouble average = arr.stream().mapToInt(x -> x).average();
         System.out.println(average);
